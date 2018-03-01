@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-</head>
-<body>
-  <cast-media-player id="player"></cast-media-player>
   <style>
     #player {
         --theme-hue: 210;
@@ -13,75 +10,12 @@
     }
   </style>
   <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+</head>
+<body>
+  <cast-media-player id="player"></cast-media-player>
   <script>
-	  console.log('Start');
-    const context = cast.framework.CastReceiverContext.getInstance();
-    const playerManager = context.getPlayerManager();
-
-	const options = new cast.framework.CastReceiverOptions();
-	options.maxInactivity = 3600;
-	
-    // intercept the LOAD request to be able to read in a contentId and get data
-    <!-- playerManager.setMessageInterceptor( -->
-        <!-- cast.framework.messages.MessageType.LOAD, loadRequestData => { -->
-            <!-- if (loadRequestData.media && loadRequestData.media.contentId) { -->
-                <!-- return thirdparty.getMediaById(loadRequestData.media.contentId) -->
-                <!-- .then(media => { -->
-                  <!-- if (media) { -->
-					<!-- loadRequestData.media.contentId = media.id; -->
-                    <!-- loadRequestData.media.contentUrl = media.url; -->
-                    <!-- loadRequestData.media.contentType = media.contentType; -->
-                    <!-- loadRequestData.media.metadata = media.metadata; -->
-                  <!-- } -->
-                  <!-- return loadRequestData; -->
-                <!-- }); -->
-            <!-- } -->
-            <!-- return loadRequestData; -->
-        <!-- }); -->
-
-    <!-- // listen to all Core Events -->
-    <!-- playerManager.addEventListener(cast.framework.events.category.CORE, -->
-        <!-- event => { -->
-            <!-- console.log(event); -->
-        <!-- }); -->
-
-    <!-- const MyCastQueue = class extends cast.framework.QueueBase { -->
-        <!-- initialize(loadRequestData) { -->
-            <!-- const media = loadRequestData.media; -->
-            <!-- const items = []; -->
-            <!-- items.push(myCreateItem(media)); // your custom function logic -->
-
-            <!-- const queueData = new cast.framework.messages.QueueData(); -->
-            <!-- queueData.items = items; -->
-
-            <!-- return queueData; -->
-        <!-- } -->
-
-        <!-- nextItems(itemId) { -->
-           <!-- return [myCreateNextItem()]; // your custom function logic -->
-        <!-- } -->
-    <!-- }; -->
-
-    <!-- const playbackConfig = new cast.framework.PlaybackConfig(); -->
-
-    <!-- // Sets the player to start playback as soon as there are five seconds of -->
-    <!-- // media contents buffered. Default is 10. -->
-    <!-- playbackConfig.autoResumeDuration = 5; -->
-
-	<!-- <!-- playbackConfig.manifestRequestHandler = requestInfo => { --> -->
-		<!-- <!-- requestInfo.withCredentials = true; --> -->
-	<!-- <!-- }; --> -->
-	
-	
-	<!-- <!-- const playbackConfig = (Object.assign(new cast.framework.PlaybackConfig(), playerManager.getPlaybackConfig())); --> -->
-	<!-- <!-- playbackConfig.autoResumeNumberOfSegments = 3; --> -->
-	<!-- <!-- playerManager.setPlaybackConfig(playbackConfig); --> -->
-	
-	
-    <!-- const myCastQueue = new MyCastQueue(); // create instance of queue Object -->
-
-    <!-- context.start({queue: myCastQueue, playbackConfig: playbackConfig}); -->
-	context.start(options);
+    console.log('Start');
+    cast.framework.CastReceiverContext.getInstance().start();
   </script>
 </body>
 </html>
