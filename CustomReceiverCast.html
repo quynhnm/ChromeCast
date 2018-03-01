@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 </head>
@@ -7,12 +8,14 @@
     #player {
         --theme-hue: 210;
         --progress-color: rgb(0, 255, 0);
-	
+	--logo-image: url('http://beetsoft.com.vn/wp-content/uploads/2018/02/logo.png');
+	--background-image: url('http://beetsoft.com.vn/wp-content/uploads/2018/02/keyview01-1.png');
     }
   </style>
-  <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js">
-  </script>
+  <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
   <script>
+	cast.receiver.logger.setLevelValue(cast.receiver.LoggerLevel.DEBUG);
+	  debugger;
     const context = cast.framework.CastReceiverContext.getInstance();
     const playerManager = context.getPlayerManager();
 
@@ -79,7 +82,7 @@
     <!-- const myCastQueue = new MyCastQueue(); // create instance of queue Object -->
 
     <!-- context.start({queue: myCastQueue, playbackConfig: playbackConfig}); -->
-	context.start();
+	context.start(options);
   </script>
 </body>
 </html>
